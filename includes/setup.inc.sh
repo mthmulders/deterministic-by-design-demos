@@ -27,13 +27,21 @@ function mvn() {
   "$CWD/.downloads/apache-maven-$MAVEN_VERSION/bin/mvn" "$@"
 }
 
-# Prepare Docker container with Diffoscope for current architecture
-__debug "Building Diffoscope Docker image"
-pushd ./diffoscope
-docker build -t diffoscope:latest .
-popd
+# Workaround for macOS to run Diffoscope.
+# Diffoscope relies on `zipdetails` but the version that macOS ships is very outdated.
+# That's why the demo runs it in a Debian container.
+# See salsa.debian.org/reproducible-builds/diffoscope/-/work_items/429 for details.
+if [[ "$OSTYPE" == "darwin"* ]]; then
 
-# Create a `diffoscope` function to use the Dockerized Diffoscope
-function diffoscope() {
-  docker run --rm -t -w $(pwd) -v $(pwd):$(pwd):ro diffoscope:latest "$@"
-}
+    # Prepare Docker container with Diffoscope for current architecture
+    __debug "Building Diffoscope Docker image"
+    pushd ./diffoscope
+    docker build -t diffoscope:latest .
+    popd
+
+    # Create a `diffoscope` function to use the Dockerized Diffoscope
+    function diffoscope() {
+      docker run --rm -t -w $(pwd) -v $(pwd):$(pwd):ro diffoscope:latest "$@"
+    }
+
+fi
