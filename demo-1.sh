@@ -15,7 +15,6 @@ read
 
 mvn --file pom.xml clean package --quiet
 
-echo "# Preserve built artifacts"
 mkdir -p artifacts/build-1
 cp target/*.jar artifacts/build-1/
 
@@ -24,16 +23,14 @@ read
 
 mvn --file pom.xml clean package --quiet
 
-echo "# Preserve built artifacts"
 mkdir -p artifacts/build-2
 cp target/*.jar artifacts/build-2/
 
-echo "# Compare built artifacts from both builds"
-echo "$ diff artifacts/build-1/demo-1.jar artifacts/build-2/demo-1.jar"
-diff artifacts/build-1/demo-1.jar artifacts/build-2/demo-1.jar || true
-
-#echo "# Compare built artifacts using Diffoscope"
-#echo "diffoscope artifacts/build-1/demo-1.jar artifacts/build-2/demo-1.jar"
-#diffoscope artifacts/build-1/demo-1.jar artifacts/build-2/demo-1.jar
+echo "# Print SHA-256 sums of built artifacts"
+# echo "$ sha256sum artifacts/build-1/demo-1.jar"
+# sha256sum artifacts/build-1/demo-1.jar
+# echo "$ sha256sum artifacts/build-2/demo-1.jar"
+# sha256sum artifacts/build-2/demo-1.jar
+find artifacts/ -type f -name "*.jar" -exec sha256sum {} \;
 
 popd
