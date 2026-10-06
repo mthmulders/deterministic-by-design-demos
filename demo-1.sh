@@ -27,10 +27,6 @@ mkdir -p artifacts/build-2
 cp target/*.jar artifacts/build-2/
 
 echo "# Print SHA-256 sums of built artifacts"
-# echo "$ sha256sum artifacts/build-1/demo-1.jar"
-# sha256sum artifacts/build-1/demo-1.jar
-# echo "$ sha256sum artifacts/build-2/demo-1.jar"
-# sha256sum artifacts/build-2/demo-1.jar
-find artifacts/ -type f -name "*.jar" -exec sha256sum {} \;
+find artifacts/ -type f -name "demo*.jar" -exec sha256sum {} \;
 
 popd
