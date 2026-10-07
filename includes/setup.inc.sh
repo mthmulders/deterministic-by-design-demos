@@ -45,3 +45,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     }
 
 fi
+
+# Clone the Reproducible Builds for Maven Central Repository
+if [ ! -d "$CWD/.downloads/reproducible-central" ]; then
+  git clone git@github.com:jvm-repo-rebuild/reproducible-central.git "$CWD/.downloads/reproducible-central"
+fi

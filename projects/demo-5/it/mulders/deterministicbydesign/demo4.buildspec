@@ -1,0 +1,14 @@
+groupId=it.mulders.deterministicbydesign
+artifactId=demo4
+display=${groupId}:${artifactId}
+version=1.0-SNAPSHOT
+
+gitRepo=https://github.com/mthmuldersdeterministic-by-design-demos
+gitTag=HEAD
+
+tool=mvn-3.9.16
+jdk=25
+newline=lf
+
+command="cd projects/demo-4 && mvn clean package -DskipTests -Dmaven.javadoc.skip -Dgpg.skip -Dbuildinfo.detect.skip=false"
+buildinfo=target/${artifactId}-${version}.buildinfo
