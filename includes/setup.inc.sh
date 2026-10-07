@@ -45,5 +45,3 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     }
 
 fi
-
-export CLIENT_KEY=correct-horse-battery-staple

@@ -11,7 +11,7 @@ pushd projects/demo-2
 # The config.properties file is in Cp1252 encoding (converted using `iconv -t Cp1252 src/main/resources/config.properties`)
 # which goes against the specs, but since the user who built it uses that as a platform encoding, the build did not fail.
 rm -Rf -Rf ~/.m2/repository/org/slf4j/slf4j-api/2.0.20/
-JAVA_TOOL_OPTIONS=-Dfile.encoding=Cp1252 mvn --file pom.xml clean install --offline --quiet > /dev/null 2>&1
+JAVA_TOOL_OPTIONS=-Dfile.encoding=Cp1252 CLIENT_KEY=correct-horse-battery-staple mvn --file pom.xml clean install --offline --quiet > /dev/null 2>&1
 
 echo ""
 echo "# Compare local build with the reference build"
