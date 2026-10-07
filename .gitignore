@@ -1,3 +1,4 @@
 .downloads/
 projects/**/target/
 projects/**/artifacts/
+dependency-reduced-pom.xml
